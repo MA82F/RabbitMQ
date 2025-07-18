@@ -30,8 +30,8 @@ class AppConfig:
             queue_name=os.getenv("RABBITMQ_QUEUE", "image_tasks"),
             response_queue=os.getenv("RABBITMQ_RESPONSE_QUEUE", "image_responses"),
             minio_endpoint=os.getenv("MINIO_ENDPOINT", "https://mymin.darkube.app"),
-            minio_access_key=os.getenv("MINIO_ACCESS_KEY", "zg5UaX56OxCVaTvPZ3Hn"),
-            minio_secret_key=os.getenv("MINIO_SECRET_KEY", "wLJfbqIo8DCnBc23Fv8g2tdVQqDOrLsq4jICzYAS"),
+            minio_access_key=os.getenv("MINIO_ACCESS_KEY"),
+            minio_secret_key=os.getenv("MINIO_SECRET_KEY"),
             minio_bucket=os.getenv("MINIO_BUCKET", "processed"),
             image_quality=int(os.getenv("IMAGE_QUALITY", "60"))
         )

@@ -29,7 +29,7 @@ class ImageProcessingService:
         )
         
         try:
-            print(f"🖼 شروع پردازش تصویر: {image_path}")
+            print(f"🖼 starting process...: {image_path}")
             
             # شروع پردازش
             task.mark_as_processing()
@@ -42,7 +42,7 @@ class ImageProcessingService:
             
             if upload_success:
                 task.mark_as_success(output_path)
-                print(f"✅ پردازش موفق: {output_path}")
+                print(f"✅ proccessed successfully: {output_path}")
                 
                 result = ProcessingResult(
                     filename=os.path.basename(image_path),
@@ -55,7 +55,7 @@ class ImageProcessingService:
         except Exception as e:
             error_msg = str(e)
             task.mark_as_failed(error_msg)
-            print(f"❌ خطا در پردازش: {error_msg}")
+            print(f"❌ failure in proccessing: {error_msg}")
             
             result = ProcessingResult(
                 filename=os.path.basename(image_path),
