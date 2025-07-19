@@ -41,13 +41,15 @@ class ImageProcessingService:
             upload_success = self._file_storage.upload_file(output_path, output_path)
             
             if upload_success:
-                task.mark_as_success(output_path)
-                print(f"✅ proccessed successfully: {output_path}")
+                # دریافت URL کامل فایل در MinIO
+                file_url = self._file_storage.get_file_url(output_path)
+                task.mark_as_success(file_url)
+                print(f"✅ پردازش موفق: {file_url}")
                 
                 result = ProcessingResult(
                     filename=os.path.basename(image_path),
                     status=ProcessingStatus.SUCCESS,
-                    output_path=output_path
+                    output_path=file_url  # URL کامل به جای نام فایل
                 )
             else:
                 raise Exception("خطا در آپلود فایل")

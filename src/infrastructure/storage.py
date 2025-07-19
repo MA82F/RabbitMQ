@@ -7,6 +7,7 @@ class MinIOStorage(IFileStorage):
     """پیاده‌سازی ذخیره فایل در MinIO"""
     
     def __init__(self, endpoint: str, access_key: str, secret_key: str, bucket: str):
+        self.endpoint = endpoint
         self.bucket = bucket
         self.s3_client = boto3.client(
             's3',
@@ -16,6 +17,9 @@ class MinIOStorage(IFileStorage):
             region_name='us-east-1'
         )
     
+    def get_file_url(self, remote_path: str) -> str:
+        return f"{self.endpoint}/{self.bucket}/{remote_path}"
+
     def upload_file(self, local_path: str, remote_path: str) -> bool:
         """آپلود فایل به MinIO"""
         try:

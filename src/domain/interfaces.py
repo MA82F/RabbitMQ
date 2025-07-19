@@ -19,6 +19,11 @@ class IFileStorage(ABC):
     def upload_file(self, local_path: str, remote_path: str) -> bool:
         """آپلود فایل به storage"""
         pass
+    
+    @abstractmethod
+    def get_file_url(self, remote_path: str) -> str:
+        """دریافت URL کامل فایل"""
+        pass
 
 
 class IMessagePublisher(ABC):
